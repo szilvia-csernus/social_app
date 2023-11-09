@@ -138,3 +138,6 @@ CLOUDINARY_STORAGE = {
 }
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# To colour unittest output in the terminal - also install redgreenunittest
+TEST_RUNNER = "redgreenunittest.django.runner.RedGreenDiscoverRunner"
