@@ -22,6 +22,8 @@ class PostSerializer(serializers.ModelSerializer):
             'title',
             'content',
             'image',
+            'profile_id',
+            'profile_image',
             'is_owner'
         ]
         read_only_fields = ['owner', 'profile_id', 'profile_image']
