@@ -11,6 +11,7 @@ class LikeSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'owner',
+            'post',
         ]
         read_only_fields = ['owner']
 
@@ -19,3 +20,7 @@ class LikeSerializer(serializers.ModelSerializer):
             return super().create(validated_data)
         except IntegrityError:
             raise serializers.ValidationError('You already liked this post')
+
+
+class LikeDetailSerializer(LikeSerializer):
+    post = serializers.ReadOnlyField(source='post.id')

@@ -9,13 +9,13 @@ class Follow(models.Model):
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE,
                               related_name='following')
-    followed = models.ForeignKey(User, on_delete=models.CASCADE,
-                                 related_name='followers')
+    followed_user = models.ForeignKey(User, on_delete=models.CASCADE,
+                                      related_name='followers')
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-created_at']
-        unique_together = ['owner', 'followed']
+        unique_together = ['owner', 'followed_user']
 
     def __str__(self):
-        return f'{self.owner} follows {self.followed}'
+        return f'{self.owner} follows {self.followed_user}'

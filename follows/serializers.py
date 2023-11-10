@@ -11,12 +11,17 @@ class FollowSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'owner',
-            'followed_name'
+            'followed_user',
         ]
-        read_only_fields = ['owner', 'followed_name']
+        read_only_fields = ['owner']
 
     def create(self, validated_data):
         try:
             return super().create(validated_data)
         except IntegrityError:
-            raise serializers.ValidationError('You already followed this person')
+            raise serializers.ValidationError(
+                'You already followed this person')
+
+
+class FollowDetailSerializer(FollowSerializer):
+    followed_user = serializers.ReadOnlyField(source='followed_user.username')
