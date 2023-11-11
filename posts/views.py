@@ -68,11 +68,16 @@ class PostList(generics.ListCreateAPIView):
 
     filter_backends = [
         filters.OrderingFilter,
+        filters.SearchFilter,
     ]
     ordering_fields = [
         'comments_count',
         'likes_count',
         'likes__created_at',
+    ]
+    search_fields = [
+        'owner__username',
+        'title',
     ]
 
     def perform_create(self, serializer):
