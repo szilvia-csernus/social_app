@@ -13,11 +13,15 @@ class ProfileSerializer(serializers.ModelSerializer):
         return obj.owner == request.user
 
     def get_follow_id(self, obj):
+        """
+        Return the follow id for this profile if the user is authenticated.
+        This runs a query for each profile in the list, so it's not very
+        efficient. We'll learn how to optimize this in a later chapter.
+        """
         user = self.context['request'].user
         if user.is_authenticated:
             follow = Follow.objects.filter(
                 owner=user, followed_user=obj.owner).first()
-            print(follow)
             return follow.id if follow else None
         return None
 
