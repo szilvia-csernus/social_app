@@ -1,5 +1,6 @@
 from django.db.models import Count
 from rest_framework import permissions, generics, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Post
 from .serializers import PostSerializer
 from social_app.permissions import IsOwnerOrReadOnly
@@ -69,6 +70,7 @@ class PostList(generics.ListCreateAPIView):
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
+        DjangoFilterBackend,
     ]
     ordering_fields = [
         'comments_count',
@@ -78,6 +80,14 @@ class PostList(generics.ListCreateAPIView):
     search_fields = [
         'owner__username',
         'title',
+    ]
+    filterset_fields = [
+        # filter the posts by the post owners' followers
+        'owner__followers__owner__profile',
+        # filter the posts by users who liked them
+        'likes__owner__profile',
+        # filter the posts by creators
+        'owner__profile',
     ]
 
     def perform_create(self, serializer):
