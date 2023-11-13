@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = ['localhost',
-                 'https://social-app-szilvia-8965907d743d.herokuapp.com/']
+                 'social-app-szilvia-8965907d743d.herokuapp.com']
 
 # REST Framework settings
 
