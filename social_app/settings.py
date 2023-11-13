@@ -28,8 +28,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['localhost',
-                 'social-app-szilvia-8965907d743d.herokuapp.com']
+ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOST"),]
 
 # REST Framework settings
 
