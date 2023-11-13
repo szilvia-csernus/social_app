@@ -50,8 +50,8 @@ if 'DEV' not in os.environ:
         'rest_framework.renderers.JSONRenderer',
     ]
 
-REST_FRAMEWORK['JSON_RENDERER'] = 'rest_framework.renderers.JSONRenderer'
-REST_FRAMEWORK['JSON_RENDERER_KWARGS'] = {'indent': 2}
+    REST_FRAMEWORK['JSON_RENDERER'] = 'rest_framework.renderers.JSONRenderer'
+    REST_FRAMEWORK['JSON_RENDERER_KWARGS'] = {'indent': 2}
 
 REST_AUTH = {
     'USE_JWT': True,
