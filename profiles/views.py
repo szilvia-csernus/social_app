@@ -4,6 +4,9 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .models import Profile
 from .serializers import ProfileSerializer
 from social_app.permissions import IsOwnerOrReadOnly
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+# from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+from dj_rest_auth.registration.views import SocialLoginView
 
 
 # class ProfileList(APIView):
@@ -81,3 +84,15 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
         followers_count=Count('owner__followers', distinct=True),
         following_count=Count('owner__following', distinct=True)
     ).order_by('-created_at')
+
+
+# if you want to use Authorization Code Grant, use this
+# class GoogleLogin(SocialLoginView):
+#     adapter_class = GoogleOAuth2Adapter
+#     callback_url = CALLBACK_URL_YOU_SET_ON_GOOGLE
+#     client_class = OAuth2Client
+
+
+# if you want to use Implicit Grant, use this
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter
