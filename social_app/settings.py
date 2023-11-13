@@ -42,6 +42,11 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 }
 
+if 'DEV' not in os.environ:
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
+        'rest_framework.renderers.JSONRenderer',
+    ]
+
 REST_AUTH = {
     'USE_JWT': True,
     'JWT_AUTH_SECURE': True,  # from the video, not from the docs
@@ -52,6 +57,8 @@ REST_AUTH = {
 REST_AUTH = {
     'USER_DETAILS_SERIALIZER': 'social_app.serializers.CurrentUserSerializer',
 }
+
+
 
 
 # Application definition
