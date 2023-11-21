@@ -28,15 +28,22 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOST"),]
+ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOST"),
+                 '127.0.0.1', 'localhost',]
 
 # REST Framework settings
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [(
-        'rest_framework.authentication.SessionAuthentication'
-        if 'DEV' in os.environ
-        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+        # 'rest_framework.authentication.SessionAuthentication'
+        # if 'DEV' in os.environ
+        # else
+        # This is from the dj-rest-auth docs, it didn't work here!
+        # https://dj-rest-auth.readthedocs.io/en/latest/installation.html
+        # 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+        # This one is from the djangorestframework-simplejwt docs
+        # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
     )],
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.PageNumberPagination',
@@ -51,9 +58,9 @@ if 'DEV' not in os.environ:
 
 REST_AUTH = {
     'USE_JWT': True,
-    'JWT_AUTH_SECURE': True,  # from the video, not from the docs
-    'JWT_AUTH_COOKIE': 'my-app-auth',
-    'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
+    # 'JWT_AUTH_SECURE': True,  # from the video, not from the docs
+    'JWT_AUTH_COOKIE': 'access-token',
+    'JWT_AUTH_REFRESH_COOKIE': 'refresh-token',
 }
 
 REST_AUTH = {
@@ -108,14 +115,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-if 'CLIENT_ORIGIN' in os.environ:
-    CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
-    ]
-else:
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        r"^https://*",
-    ]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    os.environ.get('CLIENT_ORIGIN')
+]
+
 
 CORS_ALLOW_CREDENTIALS = True
 
