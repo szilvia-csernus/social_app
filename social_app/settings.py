@@ -51,16 +51,22 @@ REST_FRAMEWORK = {
     'DATETIME_FORMAT': '%d %b %Y',
 }
 
-if 'DEV' not in os.environ:
-    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
-        'rest_framework.renderers.JSONRenderer',
-    ]
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME': 3600,  # 1 hour
+# }
+
+# if 'DEV' not in os.environ:
+#     REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
+#         'rest_framework.renderers.JSONRenderer',
+#     ]
 
 REST_AUTH = {
     'USE_JWT': True,
-    # 'JWT_AUTH_SECURE': True,  # from the video, not from the docs
+    # setting it true means the cookie will only be sent over https
+    'JWT_AUTH_SECURE': False,
     'JWT_AUTH_COOKIE': 'access-token',
     'JWT_AUTH_REFRESH_COOKIE': 'refresh-token',
+    'JWT_AUTH_HTTPONLY': False,
 }
 
 REST_AUTH = {
@@ -72,6 +78,7 @@ REST_AUTH = {
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.sites',  # added for authentication
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -84,7 +91,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'dj_rest_auth',
 
-    'django.contrib.sites',
     'allauth',
     'allauth.account',
     'dj_rest_auth.registration',
@@ -173,6 +179,7 @@ else:
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+# These don't apply to models, only to the admin interface
 
 AUTH_PASSWORD_VALIDATORS = [
  {'NAME':
