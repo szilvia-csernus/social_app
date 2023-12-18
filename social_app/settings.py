@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+
+from datetime import timedelta
 import os
 import dj_database_url
 from pathlib import Path
@@ -38,12 +40,7 @@ REST_FRAMEWORK = {
         # 'rest_framework.authentication.SessionAuthentication'
         # if 'DEV' in os.environ
         # else
-        # This is from the dj-rest-auth docs, it didn't work here!
-        # https://dj-rest-auth.readthedocs.io/en/latest/installation.html
-        # 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
-        # This one is from the djangorestframework-simplejwt docs
-        # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html
-        'rest_framework_simplejwt.authentication.JWTAuthentication'
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
     )],
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.PageNumberPagination',
@@ -51,9 +48,10 @@ REST_FRAMEWORK = {
     'DATETIME_FORMAT': '%d %b %Y',
 }
 
-# SIMPLE_JWT = {
-#     'ACCESS_TOKEN_LIFETIME': 3600,  # 1 hour
-# }
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
 
 # if 'DEV' not in os.environ:
 #     REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
@@ -63,13 +61,10 @@ REST_FRAMEWORK = {
 REST_AUTH = {
     'USE_JWT': True,
     # setting it true means the cookie will only be sent over https
-    'JWT_AUTH_SECURE': False,
-    'JWT_AUTH_COOKIE': 'access-token',
-    'JWT_AUTH_REFRESH_COOKIE': 'refresh-token',
-    'JWT_AUTH_HTTPONLY': False,
-}
-
-REST_AUTH = {
+    'JWT_AUTH_SECURE': True,
+    'JWT_AUTH_COOKIE': 'access',
+    'JWT_AUTH_REFRESH_COOKIE': 'refresh',
+    'JWT_AUTH_HTTPONLY': True,
     'USER_DETAILS_SERIALIZER': 'social_app.serializers.CurrentUserSerializer',
 }
 
@@ -89,10 +84,11 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
-    'dj_rest_auth',
+    'rest_framework_simplejwt',
 
     'allauth',
     'allauth.account',
+    'dj_rest_auth',
     'dj_rest_auth.registration',
     'corsheaders',
 
@@ -127,14 +123,7 @@ CORS_ALLOWED_ORIGINS = [
     os.environ.get('CLIENT_ORIGIN')
 ]
 
-
 CORS_ALLOW_CREDENTIALS = True
-
-# Set up JSON Web Token use with cookies
-
-JWT_AUTH_COOKIE = 'my-app-auth'
-JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
-JWT_AUTH_SAMESITE = 'None'
 
 ROOT_URLCONF = 'social_app.urls'
 
