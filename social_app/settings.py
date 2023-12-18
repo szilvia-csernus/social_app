@@ -68,6 +68,13 @@ REST_AUTH = {
     'USER_DETAILS_SERIALIZER': 'social_app.serializers.CurrentUserSerializer',
 }
 
+REST_USE_JWT = True
+USE_JWT = True
+JWT_AUTH_SECURE = True
+JWT_AUTH_COOKIE = 'access'
+JWT_AUTH_REFRESH_COOKIE = 'refresh'
+JWT_AUTH_SAMESITE = 'None'
+
 
 # Application definition
 
