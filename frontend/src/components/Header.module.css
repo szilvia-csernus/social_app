@@ -1,0 +1,20 @@
+.NavBar {
+  background-color: #ffffff;
+  border: 1px solid #dadadf;
+  transition: opacity 0.4s;
+  
+}
+
+.NavLink {
+    font-size: 16px;
+  padding: 5px;
+  text-decoration: none;
+}
+
+.NavLink:hover {
+    opacity: .7;
+}
+
+.NavLink.active {
+  color: #2142b2;
+}

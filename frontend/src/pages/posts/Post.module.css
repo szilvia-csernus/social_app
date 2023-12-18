@@ -1,0 +1,58 @@
+.Post {
+    display: flex;
+    border: 1px solid #dadadf;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+    text-align: center;
+
+}
+
+.Post figure, h5 {
+    margin: 0;
+}
+
+.Heart {
+    color: red;
+}
+
+.Heart:hover {
+    color: rgb(54, 54, 168);
+}
+
+.HeartOutline:hover {
+    color: rgb(254, 116, 116);
+}
+
+.Container {
+  min-height: 343px;
+}
+
+.Content {
+  background-color: var(--bs-body-bg);
+  padding: 1rem;
+}
+
+.Image {
+  max-height: 40vh;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.SearchBar input {
+    border-radius: 20px;
+    color: #242a3d;
+    padding-left: 40px;
+    margin-bottom: 16px;
+  }
+  
+.SearchIcon {
+  position: absolute;
+  font-size: 1.2rem;
+  padding: 9px;
+  padding-left: 15px;
+}
+
+.SearchIcon:hover {
+  cursor: default;
+  color: #cfced3;
+}

@@ -1,0 +1,70 @@
+:root {
+  --main-font-family: "DM Sans", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  --primary-color: #2142b2;
+  --secondary-color: #ff9254;
+  --main-text-color: #555555;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--main-font-family);
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--main-text-color);
+  transition: opacity ease-in-out 0.3s;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-color);
+  transition: opacity ease-in-out 0.3s;
+}
+
+i {
+  font-size: 1.6rem;
+  padding: 7px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.active {
+  color: var(--primary-color);
+}
+
+.Main {
+  padding-top: 81px;
+}
+
+.Content {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid #dadadf;
+}
+
+.FillerImage {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.Image {
+  max-height: 40vh;
+  max-width: 100%;
+  object-fit: contain;
+}

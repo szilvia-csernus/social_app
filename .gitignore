@@ -3,3 +3,4 @@ venv
 .vscode
 __pycache__
 *.sqlite3
+frontend/node_modules
