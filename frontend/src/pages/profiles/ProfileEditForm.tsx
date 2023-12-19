@@ -88,7 +88,12 @@ const ProfileEditForm = () => {
         }
 
 		try {
-			const response = await authAxios({ method: 'put', path: `/profiles/${id}/`, body: formData});
+			const response = await authAxios({
+				method: 'put',
+				path: `/profiles/${id}/`,
+				body: formData,
+				multipart: true,
+			});
 			if (response && response.data) {
                 const responseData = response.data as EditProfileDataType
                 dispatch({
