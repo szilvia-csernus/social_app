@@ -22,7 +22,7 @@ function Header() {
 	const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
 	const HandleSignOut = async () => {
-		const response = await axios.post('dj-rest-auth/logout/');
+		const response = await axios.post('/dj-rest-auth/logout/');
 		if (response.status === 200) {
 			dispatch({type: 'LOG_OUT'});
 			localStorage.removeItem('access_exp');

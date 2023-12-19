@@ -69,10 +69,7 @@ const PostPage: FC = () => {
 						});
 					}
 				}
-				console.log(
-					'post rendered by PostPage handleMount in useEffect',
-					responses
-				);
+
 			} catch (err) {
 				console.log(err);
 			}
@@ -123,9 +120,6 @@ const PostPage: FC = () => {
 									loader={<Asset spinner />}
 									hasMore={!!comments.next}
 									next={() => {
-										console.log(
-											'comment infinite scroll next function is being called.'
-										);
 										const isLoggedIn = currentUser ? true : false;
 										fetchMoreData<CommentsResponseType, CommentType>(
 											authAxios,

@@ -36,9 +36,9 @@ ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOST"),
 # REST Framework settings
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ],
     'DEFAULT_AUTHENTICATION_CLASSES': [(
         # 'rest_framework.authentication.SessionAuthentication'
         # if 'DEV' in os.environ
@@ -130,6 +130,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:5174",
+    "http://127.0.0.1:5173",
     os.environ.get('CLIENT_ORIGIN')
 ]
 

@@ -70,7 +70,6 @@ const SignInForm = () => {
 				setTokenExp(signinDataResponse.data.access);
 			}
 		} catch (error) {
-			console.log(error);
 			if (axios.isAxiosError(error)) {
 				const axiosError = error as AxiosError<ErrorResponse>;
 				if (axiosError.response) {

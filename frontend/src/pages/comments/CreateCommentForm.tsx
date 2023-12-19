@@ -43,7 +43,6 @@ function CreateCommentForm(props: CreateCommentPropsType) {
 				post: postId
 			}});
             if (response && response.status === 201) {
-				console.log('create comment response', response)
                 setComments((prevComments: CommentsResponseType) => {
 				return {
                     ...prevComments,
@@ -57,7 +56,6 @@ function CreateCommentForm(props: CreateCommentPropsType) {
             } else {
                 console.log('response was not in the requiered format', response);
             }
-            console.log('fetching filtered posts response: ', response);
 			
 			setPosts((prevPosts) => ({
 				...prevPosts,

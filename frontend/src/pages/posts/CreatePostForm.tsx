@@ -102,13 +102,11 @@ function PostCreateForm() {
 		try {
 			const response = await authAxios({ method: 'post', path: '/posts/', body: formData, multipart: true });
 			if (response && response.data) {
-				console.log('create post response: ', response)
 				const responseData = response.data as PostType
 				navigate(`/posts/${responseData.id}`, { state: { from: location } });
 			}
 		} catch (err) {
 			const axiosError = err as AxiosError;
-			console.log('axios error', axiosError)
 			if (axiosError.response && axiosError.response.data) {
 				const { data } = axiosError.response as PostErrorResponse;
 				setErrors({

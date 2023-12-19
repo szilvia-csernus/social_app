@@ -47,7 +47,6 @@ export const SetProfileDataContext = createContext<SetProfileDataProps>({
 
 
 export const ProfileDataProvider: FC<PropsWithChildren> = ({children}) => {
-	console.log('ProfileDataProvider runs');
 	const [profileData, setProfileData] = useState<ProfileDataType>(initialProfileData);
 
 		const currentUser = useContext(CurrentUserContext);
@@ -59,7 +58,6 @@ export const ProfileDataProvider: FC<PropsWithChildren> = ({children}) => {
                     followed_user: clickedProfile.id
             }})
                 if (response && response.data) {
-                    console.log('follow response: ', response)
                     const responseData = response.data as FollowResponseType
                     setProfileData((prevState: ProfileDataType) => {
                         if (prevState.pageProfile) {
@@ -127,7 +125,6 @@ export const ProfileDataProvider: FC<PropsWithChildren> = ({children}) => {
                     } else {
                         response = await axios.get('/profiles/?ordering=-followers_count');
                     }
-					console.log('popular profiles response: ', response);
 					if (response && response.data) {
                         const responseData = response.data as ProfilesResponseType
 						setProfileData((prevState: ProfileDataType) => ({

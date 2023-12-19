@@ -82,7 +82,6 @@ function ProfilePage() {
                             };
                         });
                     }
-                    console.log('profile page responses by handleMount in useEffect', responses);
                     setHasLoaded(true);
                 }
                 

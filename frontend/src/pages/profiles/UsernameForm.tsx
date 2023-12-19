@@ -47,7 +47,6 @@ const UsernameForm = () => {
 			navigate(-1);
 		} catch (err) {
 			const axiosError = err as AxiosError;
-			console.log('axios error', axiosError);
 			if (axiosError.response && axiosError.response.data) {
 				setErrors(axiosError.response.data as ProfileErrorDataType);
 			}

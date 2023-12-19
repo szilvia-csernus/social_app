@@ -75,8 +75,6 @@ function EditPostForm() {
 
     useEffect(() => {
         const HandleMount = async () => {
-
-            console.log("location: ", id)
             const response = (await authAxios({ path: `/posts/${id}/` }))
             if (response && response.data) {
                 const responseData = response.data;
@@ -85,9 +83,6 @@ function EditPostForm() {
                     is_owner ? setPostData({title, content, image}) : navigate('/')
                 }
             }
-
-            
-            console.log('fetching filtered posts response: ', response)
         }
 
         HandleMount();

@@ -78,18 +78,15 @@ const PostDetail: FC<PostDetailProps> = ({
 				body: { post: id }
 		});
 			if (response && response.data && 'id' in response.data && typeof response.data.id === 'number') {
-				console.log('like response', response);
 				const responseData = response.data as LikeResponseType
 				setPosts((prevPosts: PostsResponseType) => {
 					const indx = prevPosts.results.findIndex((post) => post.id === id);
 					const updatedResults = [...prevPosts.results];
-					console.log('prevPost', updatedResults[indx]);
 					updatedResults[indx] = {
 						...updatedResults[indx],
 						likes_count: updatedResults[indx].likes_count + 1,
 						like_id: responseData.id,
 					};
-					console.log('updated Post', updatedResults[indx]);
 					return {
 						...prevPosts,
 						results: updatedResults,
@@ -107,13 +104,11 @@ const PostDetail: FC<PostDetailProps> = ({
 			setPosts((prevPosts: PostsResponseType) => {
 				const indx = prevPosts.results.findIndex((post) => post.id === id);
 				const updatedResults = [...prevPosts.results];
-				console.log('prevPost', updatedResults[indx]);
 				updatedResults[indx] = {
 					...updatedResults[indx],
 					likes_count: updatedResults[indx].likes_count - 1,
 					like_id: null,
 				};
-				console.log('updated Post', updatedResults[indx]);
 				return {
 					...prevPosts,
 					results: updatedResults,

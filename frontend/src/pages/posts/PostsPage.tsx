@@ -42,12 +42,9 @@ const PostsPage: FC<PostsProps> = ({ message }) => {
 	const { pathname } = useLocation();
 
 	useEffect(() => {
-		console.log('useEffect() for set filtering in PostPage runs');
 
 		let filter: string = '';
 		if (currentUser) {
-			console.log('currentUser: ', currentUser);
-			console.log('pathname: ', pathname);
 			switch (pathname) {
 				case '/feed':
 					filter = `owner__followed__owner__profile=${currentUser.profile_id}&`;
@@ -74,7 +71,6 @@ const PostsPage: FC<PostsProps> = ({ message }) => {
 			} else {
 				console.log('response was not in the requiered format', response)
 			}
-			console.log('fetching filtered posts response: ', response)
 
 			setHasLoaded(true);
 		};

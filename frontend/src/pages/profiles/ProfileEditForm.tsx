@@ -46,7 +46,6 @@ const ProfileEditForm = () => {
                         setProfileData({ name, content, image });
                     }
 				} catch (err) {
-					console.log(err);
 					navigate('/');
 				}
 			} else {

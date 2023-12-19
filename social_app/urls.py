@@ -17,11 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from profiles.views import GoogleLogin
 from .views import root_route
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-    TokenVerifyView,
-)
+
 
 urlpatterns = [
     path('', root_route),
@@ -31,11 +27,6 @@ urlpatterns = [
     path('dj-rest-auth/registration/',
          include('dj_rest_auth.registration.urls')),
     path('dj-rest-auth/google/', GoogleLogin.as_view(), name='google_login'),
-    path('api/token/',
-         TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/',
-         TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('profiles/', include('profiles.urls')),
     path('posts/', include('posts.urls')),
     path('comments/', include('comments.urls')),
