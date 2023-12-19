@@ -63,6 +63,16 @@ const ProfileEditForm = () => {
 		});
 	};
 
+	const handleChangeImage = (event: ChangeEvent<HTMLInputElement>) => {
+		if (event.target.files && event.target.files.length) {
+			URL.revokeObjectURL(image);
+			setProfileData({
+				...profileData,
+				image: URL.createObjectURL(event.target.files[0]),
+			});
+		}
+	};
+
 	const handleSubmit = async (event: FormEvent) => {
 		event.preventDefault();
 		const formData = new FormData();
@@ -165,15 +175,7 @@ const ProfileEditForm = () => {
 								ref={imageFile}
 								accept="image/*"
                                 className="mt-2"
-								onChange={(e) => {
-                                    const files = (e.target as HTMLInputElement).files;
-                                    if (files && files.length > 0) {
-                                        setProfileData({
-                                            ...profileData,
-                                            image: URL.createObjectURL(files[0]),
-                                        });
-                                    }
-								}}
+								onChange={handleChangeImage}
 							/>
 						</Form.Group>
 						<div className="d-md-none">{textFields}</div>
