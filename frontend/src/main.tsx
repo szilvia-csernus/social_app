@@ -17,6 +17,7 @@ import ProfilePage from './pages/profiles/ProfilePage.tsx';
 import ProfileEditForm from './pages/profiles/ProfileEditForm.tsx';
 import UsernameForm from './pages/profiles/UsernameForm.tsx';
 import UserPasswordForm from './pages/profiles/UserPasswordForm.tsx';
+import NotFound from './components/NotFound.tsx';
 
 
 const router = createBrowserRouter([
@@ -54,10 +55,11 @@ const router = createBrowserRouter([
 				path: 'posts/:id/edit',
 				element: <EditPostForm />,
 			},
-			{ path: 'profiles/:id', element: <ProfilePage />},
-			{ path: "/profiles/:id/edit/username", element: <UsernameForm />},
-			{ path: "/profiles/:id/edit/password", element: <UserPasswordForm />},
-			{ path: "/profiles/:id/edit", element: <ProfileEditForm />}
+			{ path: 'profiles/:id', element: <ProfilePage /> },
+			{ path: '/profiles/:id/edit/username', element: <UsernameForm /> },
+			{ path: '/profiles/:id/edit/password', element: <UserPasswordForm /> },
+			{ path: '/profiles/:id/edit', element: <ProfileEditForm /> },
+			{ path: '*', element: <NotFound /> },
 		],
 	},
 ]);

@@ -16,20 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from profiles.views import GoogleLogin
-from .views import root_route
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
-    path('', root_route),
+    path('', TemplateView.as_view(template_name='index.html')),
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),  # for browsable API
-    path('dj-rest-auth/', include('dj_rest_auth.urls')),
-    path('dj-rest-auth/registration/',
+    path('api/api-auth/', include('rest_framework.urls')),  # for browsable API
+    path('api/dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('api/dj-rest-auth/registration/',
          include('dj_rest_auth.registration.urls')),
-    path('dj-rest-auth/google/', GoogleLogin.as_view(), name='google_login'),
-    path('profiles/', include('profiles.urls')),
-    path('posts/', include('posts.urls')),
-    path('comments/', include('comments.urls')),
-    path('likes/', include('likes.urls')),
-    path('follows/', include('follows.urls')),
+    path('api/dj-rest-auth/google/',
+         GoogleLogin.as_view(), name='google_login'),
+    path('api/profiles/', include('profiles.urls')),
+    path('api/posts/', include('posts.urls')),
+    path('api/comments/', include('comments.urls')),
+    path('api/likes/', include('likes.urls')),
+    path('api/follows/', include('follows.urls')),
 ]
+
+handler404 = TemplateView.as_view(template_name='index.html')
