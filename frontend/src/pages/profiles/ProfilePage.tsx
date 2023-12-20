@@ -5,7 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
 import Asset from '../../components/Asset';
-import styles from './Profile.module.css';
 import btnStyles from '../../components/Button.module.css';
 
 import PopularProfiles from './PopularProfiles';
@@ -13,7 +12,6 @@ import { AuthAxiosContext, CurrentUserContext } from '../../contexts/CurrentUser
 import { useParams } from 'react-router-dom';
 import { ProfileType } from './ProfileTypes';
 import { ProfileDataContext } from '../../contexts/ProfileDataContext';
-import { Image } from 'react-bootstrap';
 import { PostType, PostsResponseType } from '../posts/PostTypes';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PostDetail from '../posts/PostDetail';
@@ -22,6 +20,7 @@ import NoResults from '../../assets/no-results.png';
 import { useSetProfileData, useHandleFollow, useHandleUnfollow } from '../../hooks/useProfileContext';
 import { ProfileEditDropdown } from '../../components/MoreDropdown';
 import axios, { AxiosResponse } from 'axios';
+import Avatar from '../../components/Avatar';
 
 function ProfilePage() {
 	const [hasLoaded, setHasLoaded] = useState(false);
@@ -100,15 +99,11 @@ function ProfilePage() {
 				<ProfileEditDropdown id={profileData.pageProfile.id} />
 			)}
 			{profileData.pageProfile ? (
-				<Row className="px-3 text-center">
+				<Row className="px-3">
 					<Col lg={3} className="text-lg-left">
-						<Image
-							className={styles.ProfileImage}
-							roundedCircle
-							src={profileData.pageProfile.image}
-						/>
+						<Avatar src={profileData.pageProfile.image} height={80} />
 					</Col>
-					<Col lg={6}>
+					<Col lg={7}>
 						<h3 className="m-2">{profileData.pageProfile.owner}</h3>
 						<Row className="justify-content-center no-gutters">
 							<Col xs={3} className={'my-2'}>
@@ -124,8 +119,9 @@ function ProfilePage() {
 								<div>following</div>
 							</Col>
 						</Row>
+						<Row className="p-3">{profileData.pageProfile.content}</Row>
 					</Col>
-					<Col lg={3} className="text-lg-right">
+					<Col lg={2} className="text-lg-right">
 						{currentUser &&
 							!isOwner &&
 							(profileData.pageProfile.follow_id ? (
@@ -150,7 +146,6 @@ function ProfilePage() {
 								</button>
 							))}
 					</Col>
-					<Col className="p-3">Profile content</Col>
 				</Row>
 			) : (
 				<Row className="px-3 text-center">Profile not found.</Row>
