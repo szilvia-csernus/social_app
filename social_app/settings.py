@@ -142,7 +142,7 @@ ROOT_URLCONF = 'social_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'staticfiles', 'build')],
+        'DIRS': [os.path.join(BASE_DIR, 'staticfiles', 'dist')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
