@@ -100,11 +100,11 @@ function ProfilePage() {
 			)}
 			{profileData.pageProfile ? (
 				<Row className="px-3">
-					<Col lg={3} className="text-lg-left">
-						<Avatar src={profileData.pageProfile.image} height={80} />
+					<Col lg={4} className="text-lg-left">
+						<Avatar src={profileData.pageProfile.image} height={200} />
 					</Col>
-					<Col lg={7}>
-						<h3 className="m-2">{profileData.pageProfile.owner}</h3>
+					<Col lg={6}>
+						<h3 className="m-2 text-center">{profileData.pageProfile.owner}</h3>
 						<Row className="justify-content-center no-gutters">
 							<Col xs={3} className={'my-2'}>
 								<div>{profileData.pageProfile.posts_count}</div>
