@@ -89,7 +89,7 @@ function currentUserReducer(
 					...state,
 					name: action.payload.name,
 					content: action.payload.content,
-					profile_image: action.payload.content
+					profile_image: action.payload.profile_image
 				}
 			} else {
 				return state
