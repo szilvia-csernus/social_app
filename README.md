@@ -4,12 +4,13 @@ Live site: https://social-app-szilvia-8965907d743d.herokuapp.com/
 
 ![screenshot](image.png)
 
+---
 
 ## BACKEND
 
 **Back-end framework** is Django REST (`Django @4` & `Django Rest Framework @3`).
 
-**Database** is written in `PostgreSQL`, hosted on `ElephantSQL`.
+**Database** using `SQLITE3` in development and `PostgreSQL` in production, hosted on `ElephantSQL`.
 
 **Authentication** with JSON Web Tokens, implemented with: `dj-rest-auth`, `django-allauth` and `djangorestframework-simplejwt`.
 
@@ -17,7 +18,7 @@ Live site: https://social-app-szilvia-8965907d743d.herokuapp.com/
 
 **Static files** storage with `Whitenoise`.
 
-
+---
 
 ## FRONTEND
 
@@ -31,6 +32,7 @@ Live site: https://social-app-szilvia-8965907d743d.herokuapp.com/
 * `react-infinite-scroll-component`
 * `serve` - for hosting on Heroku
 
+---
 
 ## CREDITS
 
@@ -52,3 +54,34 @@ Live site: https://social-app-szilvia-8965907d743d.herokuapp.com/
 * Other resources:
    * Favicon generator: https://realfavicongenerator.net/
    * Converting svg to png: https://svgtopng.com/
+
+
+# Local Development
+
+To develop this project locally, the following steps are needed (steps are provided for Mac/Linux and VSCode setup):
+
+0. Prerequisites: 
+   - python (v3.10 or later) is installed
+   - node (v18.12 or later) is installed
+   - created an account with Cloudinary
+   - created a postgresql database in ElephantSQL
+1. Clone the repo into a folder on your local machine.
+2. Next to the project's root folder, create a virtual environment: `python3 -m venv venv`.
+3. `cd` into the project's root folder, then activate the virtual environment: `source venv/bin/activate`. If activation was successful, `venv` will appear in the front of the propt.
+4. Install the required packages with `pip install -r requirements.txt`.
+5. Create the `.env` file.
+    
+    ```
+   SECRET_KEY=<your-secret-key>,
+   CLOUDINARY_URL=<your-cloudinary-url>
+   DATABASE_URL=<your-elephantsql-project-link>
+   DEBUG=1
+   CLIENT_ORIGIN=http://localhost:8000
+    ```
+
+6. Run migrations with `python manage.py migrate`
+
+7. Create a superuser for your database with `python manage.py createsuperuser`
+
+8. Start up the development server: `python manage.py runserver`
+
