@@ -37,17 +37,18 @@ Live site: https://social-app-szilvia-8965907d743d.herokuapp.com/
 ## CREDITS
 
 * Design and styles: by Code Institute.
-* The basis of this project was Code Institute's `Moments` app. While the look & feel of my app is very similar, I implemented several fundamental changes which resulted in a completely different code. The changes I made are as follows:
+* The basis of this project was Code Institute's `Moments` app. While the look & feel of my app is very similar, the code is fundamentally different:
 
    * On the Frontend:
-      - I used `TypeScript` instead of JavaScript, 
-      - used `@vite` instead of react-create-app for setup,
-      - `react-router-dom v6` instead of v5 for routing (v6 was a major upgrade),
-      - I managed state values with reducers whenever it was necessary to avoid unneccessary re-renders instead of using several useState() values,
-      - used Bootstrap v5 instead of v4
+      - I used `TypeScript`, 
+      - used `@vite` for setup,
+      - `react-router-dom v6` is used which is a major upgrade from v5,
+      - State management is implemented with reducers whenever it was necessary to avoid unneccessary re-renders instead of using several useState() values,
+      - used Bootstrap v5 instead of v4,
 
    * On the Backend:
-      - Django v4 instead of v3 and I used newer versions for django-restframework as well as djangorestframework-simplejwt too, my API endpoints are different.
+      - Django v4 was used as well as the newest versions for django-restframework and djangorestframework-simplejwt too,
+      - my API endpoints are different,
       - I used a completely different approach for authentication, login & logout.
    
 
